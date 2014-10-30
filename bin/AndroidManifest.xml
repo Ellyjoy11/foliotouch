@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.elena.foliotouch"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="20" />
+
+    <uses-permission android:name="com.motorola.permission.SEND_FOLIO_STATE_CHANGED" />
+
+    <uses-feature
+        android:name="com.motorola.software.folio"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyFragment"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_my_fragment"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <receiver android:name="MyFolioReceiver" >
+            <intent-filter>
+                <action
+                    android:name="com.motorola.intent.ACTION_FOLIO_STATE_CHANGED"
+                    android:permission="com.motorola.permission.SEND_FOLIO_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.motorola.motofolio"
+            android:value="com.motorola.folioaware" />
+    </application>
+
+</manifest>
